@@ -1,16 +1,25 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useNavigate, redirect } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import Axios from "axios";
 import { setUserToken, setLoginInfos } from "../features/user/userSlice";
 import { useForm } from 'react-hook-form'
+import useAuth from "components/useAuth";
 import "../style/SignIn.css";
 
 const SignIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const auth = useAuth();
 
-  const { register, handleSubmit } = useForm()
+  const { register, handleSubmit } = useForm();
+
+  useEffect(() => {
+    if (auth){
+      return navigate("/");
+    } 
+  })
+
   const submitForm = (data) => {
     Axios.post("http://localhost:3001/api/v1/user/login", data)
       .then((response) => {
