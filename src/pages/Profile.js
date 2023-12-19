@@ -120,17 +120,13 @@ const User = () => {
   return (
     <main className="main bg-dark">
       <form className="form" onSubmit={handleSubmit(handleChangeUserName)}>
-        <h1>
-          Welcome back
-          <br />
-          {name}
-        </h1>
+        <h1>Welcome back</h1>
         <div className="inputs">
           <div className="input-wrapper">
             <input
               type="text"
               id="username"
-              placeholder="name"
+              placeholder={firstName}
               {...register("name")}
               required
             />
@@ -139,7 +135,7 @@ const User = () => {
             <input
               type="text"
               id="lastname"
-              placeholder="lastname"
+              placeholder={lastName}
               {...register("lastname")}
               required
             />
